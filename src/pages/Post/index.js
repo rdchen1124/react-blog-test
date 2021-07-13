@@ -1,0 +1,1 @@
+export { default, Article } from './Post';
