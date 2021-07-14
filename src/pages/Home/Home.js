@@ -7,6 +7,14 @@ import {getPosts} from '../../WebAPI';
 const Root = styled.div`
   width: 90%;
   margin: 0 auto;
+  background: white;
+`;
+const PostHeader = styled.div`
+  font-size: 28px;
+  font-weight: bold;
+  color: black;
+  padding-left: 30px;
+  margin-bottom: 10px;
 `;
 const PostContainer = styled.div`
   display: flex;
@@ -17,11 +25,15 @@ const PostContainer = styled.div`
 `;
 const PostTitle = styled(Link)`
   font-size: 20px;
-  color: seagreen;
+  color: #008CBA;
   text-decoration: none;
 `
 const PostDate = styled.div`
   color: grey;
+`
+const PostList = styled.div`
+  padding: 10px 5px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 `
 function Post({ post }){
   return (
@@ -32,8 +44,12 @@ function Post({ post }){
     
   )
 }
-Post.prototype = {
-  post: PropTypes.object
+Post.propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    createdAt: PropTypes.number
+  })
 }
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -42,11 +58,14 @@ export default function Home() {
   },[]);
   return (
     <Root>
-      {
-        posts && posts.map(post=>(
-        <Post key={post.id} post={post} />
-        ))
-      }
+      <PostHeader>文章列表</PostHeader>
+      <PostList>
+        {
+          posts && posts.map(post=>(
+          <Post key={post.id} post={post} />
+          ))
+        }
+      </PostList>
     </Root>
   )
 }

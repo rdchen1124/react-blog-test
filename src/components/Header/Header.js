@@ -64,7 +64,7 @@ function Header() {
     <HeaderContainer>
       <PrimaryContainer>
         <TitleContainer>
-          Medium
+          MediRyan
         </TitleContainer>
         <NavList>
           <Nav to='/' $active={location.pathname==='/'}>
@@ -80,7 +80,7 @@ function Header() {
           {!user && <Nav to='/login' $active={location.pathname==='/login'}>
             登入
           </Nav>}
-          {user && <Nav onClick={handleLogout}>
+          {user && <Nav as='div' onClick={handleLogout}>
             登出
           </Nav>}
         </NavList>
